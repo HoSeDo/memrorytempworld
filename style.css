@@ -45,6 +45,10 @@ h1 {
   margin-bottom: 8px;
 }
 
+.question-nav input[type="checkbox"] {
+  pointer-events: none;
+}
+
 .options label {
   margin-right: 15px;
 }
@@ -61,7 +65,7 @@ input[type="text"] {
 #score-display {
   font-size: 1.2rem;
   font-weight: bold;
-  margin-top: 30px; /* 추가 여백 */
+  margin-top: 30px;
   text-align: center;
 }
 
@@ -82,35 +86,12 @@ input[type="text"] {
 }
 
 .question-nav {
-  position: fixed;
-  right: -250px;
-  top: 0;
   height: 100%;
   width: 250px;
   background-color: #ffecec;
   box-shadow: -2px 0 5px rgba(0,0,0,0.1);
-  transition: right 0.3s ease;
   padding: 20px;
   overflow-y: auto;
-  z-index: 1000;
-}
-
-.question-nav.show {
-  right: 0;
-}
-
-.question-nav-handle {
-  position: fixed;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: #ffa;
-  padding: 10px;
-  cursor: pointer;
-  z-index: 1100;
-  font-weight: bold;
-  border: 1px solid #ccc;
-  border-left: none;
 }
 
 .question-nav ul {

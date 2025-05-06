@@ -46,21 +46,17 @@ document.addEventListener("DOMContentLoaded", function () {
     checklist.appendChild(listItem);
   });
 
-  // 체크박스 자동 체크 & 점수 계산
   const scoreDisplay = document.getElementById("score-display");
   const radios = document.querySelectorAll("input[type='radio']");
 
   function updateScore() {
     let score = 0;
-
     radios.forEach(radio => {
       if (radio.checked && radio.value === "1") {
         score++;
       }
     });
-
     scoreDisplay.textContent = `총점: ${score} / 14`;
-    extraMessage.style.display = score >= 6 ? "block" : "none";
   }
 
   radios.forEach(radio => {
@@ -68,12 +64,13 @@ document.addEventListener("DOMContentLoaded", function () {
       const questionBox = e.target.closest(".question-box");
       const id = questionBox.dataset.id;
       const checkbox = document.getElementById(`check-${id}`);
-      if (checkbox) checkbox.checked = true;
+      if (checkbox && !checkbox.checked) {
+        checkbox.checked = true; // 자동 체크, 단 사용자가 이미 체크한 건 유지됨
+      }
       updateScore();
     });
   });
 
-  // 제출 버튼
   document.getElementById("submit-btn").addEventListener("click", function () {
     let score = 0;
     radios.forEach(radio => {
@@ -90,17 +87,5 @@ document.addEventListener("DOMContentLoaded", function () {
       alert(`총점: ${score}점\n정상 범위입니다. 홈으로 돌아갑니다.`);
       location.href = "https://wjdqosla184.github.io/homep/";
     }
-  });
-
-  // 슬라이드 패널 토글
-  const nav = document.getElementById("question-nav");
-  const handle = document.querySelector(".question-nav-handle");
-
-  handle.addEventListener("mouseenter", () => {
-    nav.classList.add("show");
-  });
-
-  nav.addEventListener("mouseleave", () => {
-    nav.classList.remove("show");
   });
 });
